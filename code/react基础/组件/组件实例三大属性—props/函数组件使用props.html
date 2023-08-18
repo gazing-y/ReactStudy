@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/prop-types/15.6.1/prop-types.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+        function Person(props){
+            const{name,age,sex}=props
+            return(
+                    <ul>
+                        <li>{name}</li>
+                        <li>{age}</li>
+                        <li>{sex}</li>
+                    </ul>
+                )
+        }
+        // 对标签属性进行类型、必要性的限制
+        Person.propTypes={
+            name:PropTypes.string.isRequired,
+            sex:PropTypes.string,
+            age:PropTypes.number,
+        }
+        // 指定默认的标签属性值
+        Person.defaultProps={
+            sex:"人妖",
+            age:18
+        }
+        // 渲染组件到页面
+        ReactDOM.render(<Person  name="ZHAN" age="20" />,document.getElementById('root'))
+    </script>
+   
+</body>
+
+</html>

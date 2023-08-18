@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <div id="root2"></div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+        /** 1.理解：
+         *      1>每个组件对象都会有props（properties的简写）属性
+         *      2>组件标签的所有属性都保存在props中
+         *  2.作用：
+         *      1>通过标签属性从组件外向组件内传递变化的数据
+         *      2>注意：组件内部不要修改props数据（只读）
+         * 
+         *
+         */ 
+        
+        class Person extends React.Component{
+            render(){
+                const {name,age,sex} = this.props
+                return(
+                    <ul>
+                        <li>{name}</li>
+                        <li>{+age+1}</li>
+                        <li>{sex}</li>
+                    </ul>
+                )
+                
+            }
+        }-
+        
+        ReactDOM.render(<Person name="Jack" age="20" sex="man"/>,document.getElementById('root'))
+        
+        // 批量传递Props（批量传递标签属性）
+        const p = {name:'Tom',age:18,sex:'man'}
+        ReactDOM.render(<Person {...p}/>,document.getElementById('root2'))
+    </script>
+   
+</body>
+
+</html>

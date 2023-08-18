@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+        // 生命周期回调函数 <=> 生命周期钩子函数 <=> 生命周期函数  <=> 生命周期钩子
+       class Life extends React.Component{
+        state={
+            opacity:1
+        }
+        death=()=>{
+            // 卸载组件
+            ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+        }
+        // 组件挂载完毕
+        componentDidMount(){
+            this.timer = setInterval(()=>{
+                // 获取原状态
+                let {opacity} = this.state
+                // 减小0.1
+                opacity -= 0.1
+                if(opacity <= 0) opacity = 1
+                // 设置新的不透明度
+                this.setState({opacity})
+            },200)
+        }
+        // 组件将要卸载
+        componentWillUnmount(){
+            // 清除定时器
+            clearInterval(this.timer)
+        }
+
+        // 初始化渲染、状态更新后
+        render(){
+            console.log("render");
+            return(
+                <div>
+                    <h2 style={{opacity:this.state.opacity}}>React 啊啊啊啊啊 </h2>
+                    <button onClick={this.death}>学不死就往死里学</button>
+                </div>
+            )
+        }
+       }
+       ReactDOM.render(<Life/>,document.getElementById('root'))
+    </script>
+   
+</body>
+
+</html>

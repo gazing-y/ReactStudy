@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+        /**
+         * 高阶函数：
+         *      如果一个函数符合下面两个规范中的任何一个，那该函数就是是高阶函数
+         *      1. 若A函数，接收的参数是一个函数，那么A就可以称之为高阶函数
+         *      2. 若A函数，调用的返回值依然是一个函数，那么A就可以称之为高阶函数
+         *      常见的高阶函数有：Promise、setTimeout、arr.Map()
+         * 
+         * 函数的柯里化：通过函数用继续返回函数的方式，实现多次接收参数最后统一处理的函数编码形式
+         *
+         * 
+        */
+        class Login extends React.Component{
+            // 初始化状态
+            state={
+                username:'',
+                password:''
+            }
+            // 保存表单数据到状态中
+            saveFormDate=(dataType)=>{
+                return(event)=>{
+                    this.setState({[dataType]:event.target.value})
+                    console.log(dataType,event.target.value);
+                }
+            }
+            handlesubmit=(event)=>{
+                // 阻止表单提交默认事件
+                event.preventDefault()
+                const {username,password} = this.state
+                console.log(username);
+            }
+            render(){
+                return(
+                    <form action="https://www.atguigu.com" onSubmit={this.handlesubmit}>
+                        用户名： <input onChange={this.saveFormDate('username')} type="text" name="name"/><br/>
+                        密码：<input onChange={this.saveFormDate('password')} type="password" name="password"/><br/>
+                        <button type="submit">登录</button>
+                    </form>
+                )
+            }
+
+        }
+        ReactDOM.render(<Login/>,document.getElementById('root'))
+    </script>
+   
+</body>
+
+</html>

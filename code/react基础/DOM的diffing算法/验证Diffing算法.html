@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Time extends React.Component{
+            state = {date:new Date()}
+            componentDidMount(){
+                setInterval(()=>{
+                    this.setState({
+                        date:new Date()
+                    })
+                },1000)
+            }
+            render(){
+                const {date} = this.state
+                return(
+                    <div>
+                        <h1>Hello</h1>
+                        <input type="text"/> <br/>
+                        <span>NOW: {date.toTimeString()}</span>   
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Time/>,document.getElementById('root'))
+    </script>
+  </body>
+</html>

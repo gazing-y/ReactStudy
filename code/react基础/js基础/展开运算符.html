@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr1 = [1,3,5,7,9]
+        let arr2 = [2,4,6,8,10]
+        //1. 展开一个数组
+        console.log(...arr1);
+
+        //2. 连接数组
+        let arr3 = [...arr1,...arr2]
+        console.log(...arr3);
+
+        //3.传参（参数个数不固定）
+        function sum(...num){
+            return num.reduce((preValue,currentValue)=>{
+                return preValue + currentValue
+            })
+        }
+        console.log(sum(1,2,3));
+        //4. 构造字面量对象时使用展开语法
+        let person = {name:'Tom',age:20}
+        let person2 = {...person} //浅拷贝
+        // console.log(...person); 报错，展开运算符不能展开对象
+        // 合并：复制对象的同时，修改属性
+        let person3 = {...person,name:'June',address:'Beijing'}
+        console.log('person3:',person3);
+
+    </script>
+    <script>
+        /**关于reduce() —— 归并类方法
+         * 两个参数：（fun(),initVal）
+         *     1. fun(前一个值，当前值，项目索引，数组对象)，每次遍历都会调用的函数，函数返回值将作为第一个参数传给下一次遍历
+         *     2. 归并基础的初始值
+         */ 
+        // 1. 计算数组总和
+        let reArr = [1,3,5,6]
+        let res1 = reArr.reduce((prev,cur)=>{
+            return prev+cur
+        })
+        let res2 = reArr.reduce((prev,cur)=>{
+            return prev+cur
+        },10)
+        console.log('res1: ',res1);
+        console.log('res1: ',res2);
+
+        // 2.累加数组中对象的值
+         let reArr2 = [{x:1},{x:2},{x:3}]
+         let res3 = reArr2.reduce((pre,cur)=>{
+            return pre+cur.x
+         },0)
+         console.log('res3: ',res3);
+    </script>
+    <script>
+        /**关于contcat()
+         * !! contcat 返回的是一个浅拷贝
+         */ 
+
+        //  1. 连接多个数组/对象 [数组默认展开，对象默认不展开；]
+        // const contArr=[1,2,3].concat([4,6])
+        const contArr1 = [1,2,3]
+        const contArr2 = [4,5,6]
+        contArr = contArr1.concat(contArr2)
+        console.log('contArr',contArr);
+
+
+    </script>
+</body>
+</html>

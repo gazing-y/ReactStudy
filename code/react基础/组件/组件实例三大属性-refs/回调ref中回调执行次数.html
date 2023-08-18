@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+        class Demo extends React.Component{
+            state ={isHot : true}
+            render(){
+                const{isHot} = this.state
+                return(
+                    <div>
+                        <p>天气{isHot?'炎热':'凉爽'}</p>
+                        {/*<input ref={(currentNode)=>{this.input1 = currentNode;console.log('@',currentNode)}} type="text" placeholder="点击按钮提示数据"/>*/}
+                        <input ref={this.saveInput} type="text" placeholder="点击按钮提示数据"/>
+                        <button onClick={this.showData}>提示</button><br/>
+                        <button onClick={this.changeWeather}>切换天气</button><br/>
+                    </div>
+                )
+            }
+            showData=()=>{
+                const {input1} = this
+                console.log(input1.value);
+            }
+            changeWeather=()=>{
+                // 更新
+                this.setState({isHot:!this.state.isHot})
+            }
+            saveInput=(c)=>{
+                this.input1 = c
+                console.log('@@',c);
+            }
+        }
+
+        ReactDOM.render(<Demo/>,document.getElementById('root'))
+    </script>
+   
+</body>
+
+</html>

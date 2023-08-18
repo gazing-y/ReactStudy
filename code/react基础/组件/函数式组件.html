@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 用于支持react操作dom -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <!-- 用于将jsx 转为js -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+        // 创建函数式组件
+        function Demo(){
+            console.log(this);
+             return <h2>函数式组件（适用于【简单组件】的定义）</h2>
+        }
+        // 渲染组件到页面
+        ReactDOM.render(<Demo/>,document.getElementById('root'))
+
+        // 执行了ReactDOM.render(<Demo/... 后，发生了什么？
+        // 1.react解析组件标签，找到了Demo组件
+        // 2. 发现组件是使用函数定义的，随后调用该函数，将返回的虚拟dom转为真实dom，随后呈现在页面中
+    </script>
+   
+</body>
+
+</html>

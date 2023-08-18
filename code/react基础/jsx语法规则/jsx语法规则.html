@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- 用于支持react操作dom -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <!-- 用于将jsx 转为js -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+    .tit{
+        color: red;
+    }
+</style>
+</head>
+
+<body>
+    <!-- 
+    jsx 语法规则：
+        1. 定义虚拟dom时，不要写引号
+        2. 标签中混入js 表达式用{}
+        3. 样式的类名用 className
+        4. 内联样式，要用style={{key:value}}的形式去写
+        5. 只有一个根标签
+        6. 标签必须闭合
+        7. 标签首字母
+          （1）若小写字母开头，则将该标签转为html 中同名元素，若html无该标签对应的同名元素，则报错
+          （2）若大写字母开头，react就去渲染对应的组件，若组件没有定义，则报错
+     -->
+    <div id="root"></div>
+    <!--此处为jsx ，babel将jsx转为js  -->
+    <script type="text/babel">
+
+        const myId = "aTgUIGu"
+        const myData = 'Hello React'
+        const VDOM = (
+            <div>
+                <h2 id={myId.toLocaleLowerCase()}  className="tit">
+                    <span style={{fontSize:'80px'}}>{myData.toLocaleLowerCase()}</span>
+                </h2>
+                <input type="text"/>
+            </div>
+        )
+        ReactDOM.render(VDOM,document.getElementById('root'))
+
+    </script>
+</body>
+
+</html>
