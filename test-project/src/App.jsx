@@ -26,12 +26,12 @@ export default class App extends React.Component{
     updateTodo=(id,done)=>{
         const {todos} = this.state
         //匹配处理数据
-        const newTodo= todos.map((todoObj)=>{
+        const newTodos= todos.map((todoObj)=>{
             if(id === todoObj.id) return {...todoObj,done}
-            else return
+            else return todoObj
         })
         // 更新状态
-        this.setState({todos:newTodo})
+        this.setState({todos:newTodos})
     }
     render(){
         const {todos} = this.state
