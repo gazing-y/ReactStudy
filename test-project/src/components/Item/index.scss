@@ -1,0 +1,11 @@
+li{
+    .delbtn{
+        display: none;
+    }
+    &:hover{
+        background: rgb(216, 216, 216);
+        .delbtn{
+            display: block;
+        }
+    }
+}

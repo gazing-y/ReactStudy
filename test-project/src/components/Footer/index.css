@@ -1,0 +1,19 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .check {
+  display: flex;
+  flex-shrink: 0;
+}
+
+footer .check .finish {
+  font-weight: 700;
+  color: green;
+}
+
+footer .check .total {
+  font-weight: 700;
+}
