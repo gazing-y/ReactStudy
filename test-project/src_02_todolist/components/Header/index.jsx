@@ -1,8 +1,13 @@
 import React from "react";
+import PropTypes from 'prop-types'
 import {nanoid} from 'nanoid'
 import "./index.css"
 
 export default class Footer extends React.Component{
+    // 对接收的props 进行：类型、必要性的限制
+    static propTypes = {
+        addTodo:PropTypes.func.isRequired
+    }
     handleKeyUp = (event)=> {
         // 解构赋值
         const {keyCode,target} = event

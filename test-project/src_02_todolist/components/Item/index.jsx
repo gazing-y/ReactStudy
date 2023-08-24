@@ -7,15 +7,20 @@ export default class Item extends React.Component{
             this.props.updateTodo(id,event.target.checked)
         }
     }
+    handleDelete=(id)=>{
+        if(window.confirm("确定删除吗？")){
+            this.props.deleteTodo(id)
+        }
+    }
     render(){
         const {id,name,done} = this.props
         return(
             <li>
                 <div>
-                    <input type="checkbox" defaultChecked={done} onChange={this.handleCheck(id)}/>
+                    <input type="checkbox" checked={done} onChange={this.handleCheck(id)}/>
                     <span>{name}</span> 
                 </div>
-                <button className="delbtn">删除</button>
+                <button className="delbtn" onClick={()=>{this.handleDelete(id)}}>删除</button>
             </li>
         )
     }
